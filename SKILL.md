@@ -2,13 +2,30 @@
 
 Add events to iCloud Calendar via CalDAV. Syncs to iPhone automatically.
 
-## Setup (已配置)
+## Setup
 
-**已配置账号：**
-- Email: wangjintao1999@icloud.com
-- CalDAV URL: https://caldav.icloud.com
+### 1. Get iCloud App Specific Password
 
-**Note:** 需要 App Specific Password（已在 credentials 中配置）
+1. Go to [appleid.apple.com](https://appleid.apple.com)
+2. Sign in → "Sign-In and Security"
+3. Click "App-Specific Passwords" → "+"
+4. Create a new password and save it
+
+### 2. Configure Credentials
+
+Copy the example env file and fill in your credentials:
+
+```bash
+cp secrets/.env.example secrets/.env
+# Edit secrets/.env with your credentials
+```
+
+Or set environment variables directly:
+
+```bash
+export ICLOUD_EMAIL="your-email@icloud.com"
+export ICLOUD_PASSWORD="your-app-specific-password"
+```
 
 ## Add Event
 
@@ -19,4 +36,6 @@ Add events to iCloud Calendar via CalDAV. Syncs to iPhone automatically.
 
 ## Technical
 
-使用 CalDAV PUT 请求添加 .ics 格式的日程到默认日历。
+- Credentials stored in `secrets/.env` (not committed to Git)
+- Uses CalDAV PUT request to add .ics format events
+- Supports alarm reminders (default 15 min + 5 min before)

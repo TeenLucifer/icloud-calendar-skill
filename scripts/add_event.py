@@ -2,19 +2,40 @@
 """
 iCloud Calendar Add Event Script
 Usage: python3 add_event.py "Event Title" "2026-03-06T10:00:00" "2026-03-06T11:00:00" "Description"
+
+Setup:
+1. Copy secrets/.env.example to secrets/.env
+2. Fill in your iCloud credentials in secrets/.env
 """
 
 import sys
-import urllib.request
-import base64
-import uuid
-from datetime import datetime
+import os
 
-# iCloud Configuration
-ICLOUD_EMAIL = "your-email@icloud.com"
-ICLOUD_PASSWORD = "your-app-specific-password"
+# Load credentials from .env file
+def load_credentials():
+    env_path = os.path.join(os.path.dirname(__file__), '..', 'secrets', '.env')
+    if os.path.exists(env_path):
+        with open(env_path) as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith('#'):
+                    key, val = line.split('=', 1)
+                    os.environ[key] = val
+    
+    return (
+        os.environ.get('ICLOUD_EMAIL', ''),
+        os.environ.get('ICLOUD_PASSWORD', '')
+    )
+
+ICLOUD_EMAIL, ICLOUD_PASSWORD = load_credentials()
+
+if not ICLOUD_EMAIL or not ICLOUD_PASSWORD:
+    print("❌ Error: iCloud credentials not found!")
+    print("Please set up secrets/.env file (see secrets/.env.example)")
+    sys.exit(1)
+
 CALDAV_URL = "https://caldav.icloud.com"
-# Calendar home path
+# Calendar home path (auto-discovery supported)
 CALENDAR_HOME = "/8132224793/calendars/home/"
 
 def create_ics_event(title, start_time, end_time, description="", alarm_minutes=15):
