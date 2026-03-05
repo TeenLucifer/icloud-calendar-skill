@@ -11,8 +11,8 @@ import uuid
 from datetime import datetime
 
 # iCloud Configuration
-ICLOUD_EMAIL = "wangjintao1999@icloud.com"
-ICLOUD_PASSWORD = "bntm-ffft-vwgf-iybk"
+ICLOUD_EMAIL = "your-email@icloud.com"
+ICLOUD_PASSWORD = "your-app-specific-password"
 CALDAV_URL = "https://caldav.icloud.com"
 # Calendar home path
 CALENDAR_HOME = "/8132224793/calendars/home/"
