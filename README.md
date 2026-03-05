@@ -58,7 +58,7 @@ This skill works with OpenClaw AI assistant. Once installed, you can add events 
 ## Technical Details
 
 - Uses iCloud CalDAV API
-- Calendar path format: `/< user_id >/calendars/home/`
+- Calendar path format: `/<user_id>/calendars/home/`
 - Creates iCalendar (.ics) events with VALARM reminders
 - Supports multiple alarm triggers
 
