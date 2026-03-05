@@ -1,0 +1,7 @@
+{
+  "id": "icloud-calendar",
+  "name": "iCloud Calendar",
+  "version": "0.1.0",
+  "description": "Add events to iCloud Calendar via CalDAV. Syncs to iPhone automatically.",
+  "homepage": "https://www.icloud.com/calendar"
+}
